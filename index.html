@@ -14,13 +14,12 @@
         const img = document.querySelector("img");
         const searchString = document.querySelector("#searchBox").value;
         const responce = await fetch(
-          "https://api.giphy.com/v1/gifs/translate?api_key=C2EeBKijWRQn0aVCVihfLmWQ86Q4lhYq&s=" +
+          "https://api.giphy.com/v1/gifs/translate?api_key=AddAPIKeyHere&s=" +
             searchString,
           { mode: "cors" }
         );
-        responce.json().then(function (response) {
-          img.src = response.data.images.original.url;
-        });
+        const gifData = await responce.json();
+        img.src = gifData.data.images.original.url;
       }
     </script>
   </body>

@@ -10,20 +10,17 @@
     <button onclick="search()">Search</button>
 
     <script>
-      function search() {
+      async function search() {
         const img = document.querySelector("img");
         const searchString = document.querySelector("#searchBox").value;
-        fetch(
-          "https://api.giphy.com/v1/gifs/translate?api_key=YOURAPIKEYHERE&s=" +
+        const responce = await fetch(
+          "https://api.giphy.com/v1/gifs/translate?api_key=C2EeBKijWRQn0aVCVihfLmWQ86Q4lhYq&s=" +
             searchString,
           { mode: "cors" }
-        )
-          .then(function (response) {
-            return response.json();
-          })
-          .then(function (response) {
-            img.src = response.data.images.original.url;
-          });
+        );
+        responce.json().then(function (response) {
+          img.src = response.data.images.original.url;
+        });
       }
     </script>
   </body>

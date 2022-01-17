@@ -6,18 +6,25 @@
   </head>
   <body>
     <img src="#" />
+    <label>search <input id="searchBox" /></label>
+    <button onclick="search()">Search</button>
+
     <script>
-      const img = document.querySelector("img");
-      fetch(
-        "https://api.giphy.com/v1/gifs/translate?api_key=ENTER_API_KEY_HERE&s=happy",
-        { mode: "cors" }
-      )
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (response) {
-          img.src = response.data.images.original.url;
-        });
+      function search() {
+        const img = document.querySelector("img");
+        const searchString = document.querySelector("#searchBox").value;
+        fetch(
+          "https://api.giphy.com/v1/gifs/translate?api_key=YOURAPIKEYHERE&s=" +
+            searchString,
+          { mode: "cors" }
+        )
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (response) {
+            img.src = response.data.images.original.url;
+          });
+      }
     </script>
   </body>
 </html>
